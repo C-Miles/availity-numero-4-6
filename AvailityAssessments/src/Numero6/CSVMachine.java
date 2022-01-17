@@ -14,7 +14,6 @@ import java.util.Map;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
 public class CSVMachine {
@@ -48,7 +47,7 @@ public class CSVMachine {
 				client.setLastName(record.get("lastName"));
 				client.setVersion(Integer.parseInt(record.get("version")));
 				client.setInsuranceCompany(record.get("insuranceCompany"));
-				
+			 	
 				String insuranceCompany = record.get("insuranceCompany");
 				boolean newbie = true;
 				
@@ -81,32 +80,49 @@ public class CSVMachine {
 				}
 			}
 			
-			int num = 1;
 			
-			
+						
 //			Loop over map and print new files for each company  
 				
+			int num = 1;
 			for(Map.Entry<String,List<Client>> row : map.entrySet()) {
 				
-
 				String file = "/Users/Casey/git/availityAssessment3/AvailityAssessments/src/clientFiles" + num + ".csv"; 
-
-				String file = "/Users/Casey/git/availityAssessment3/AvailityAssessments/src/clientFiles" + num + ".csv";
-
 				FileWriter writer = new FileWriter(file);
-				CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("userId","firstName","lastName","version","insuranceCompany"));
+
+//				Headers for new files
+				writer.append("userId");
+				writer.append(",");
+				writer.append("firstName");
+				writer.append(",");
+				writer.append("lastName");
+				writer.append(",");
+				writer.append("version");
+				writer.append(",");
+				writer.append("insuranceCompany");
+				writer.append("\n");
+
+//				Sorting clients ASC
 				Collections.sort(map.get(row.getValue().get(0).getInsuranceCompany()), compareByLastName);
 				
 				for(int i = 0; i < map.get(row.getValue().get(0).getInsuranceCompany()).size(); i++) {
 					
-					printer.printRecord(row.getValue().get(i).getUserId(), row.getValue().get(i).getFirstName(),
-							row.getValue().get(i).getLastName(), row.getValue().get(i).getVersion(), row.getValue().get(i).getInsuranceCompany());
-					
+					writer.append(row.getValue().get(i).getUserId());
+					writer.append(",");
+					writer.append(row.getValue().get(i).getFirstName());
+					writer.append(",");
+					writer.append(row.getValue().get(i).getLastName());
+					writer.append(",");
+					writer.append("" + (row.getValue().get(i).getVersion()));
+					writer.append(",");
+					writer.append(row.getValue().get(i).getInsuranceCompany());
+					writer.append("\n");
+								
 				}
 				
-//				close stream
-				printer.flush();
-				printer.close();
+//				close stream, increment counter for file name
+				writer.flush();
+				writer.close();
 				num += 1;
 			}
 			
