@@ -102,6 +102,7 @@ public class CSVMachine {
 				
 //				close stream
 				printer.flush();
+				printer.close();
 				num += 1;
 			}
 			

@@ -13,6 +13,7 @@ public class Main {
 		System.out.println(lispRdr.validator(valid));
 		System.out.println(lispRdr.validator(invalid));
 
+		
 	}
 
 }
