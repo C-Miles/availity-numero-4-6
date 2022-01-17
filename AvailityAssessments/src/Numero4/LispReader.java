@@ -16,7 +16,7 @@ public class LispReader {
 		
 		int count = 0; 
 		
-//		Increment/decrement counter to keep track of parentheses, return false if ever negative or anything other than 0
+//		Increment/decrement counter when to keep track of parentheses, return false if ever negative or anything other than 0
 		for(int i = 0; i < arr2.length; i++) {
 			if(arr2[i].equals('(')) {
 				count += 1;
