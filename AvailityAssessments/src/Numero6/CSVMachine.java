@@ -88,7 +88,7 @@ public class CSVMachine {
 				
 			for(Map.Entry<String,List<Client>> row : map.entrySet()) {
 				
-				String file = "/Users/Casey/git/availityAssessment3/AvailityAssessments/src/clientFiles" + num + "csv";
+				String file = "/Users/Casey/git/availityAssessment3/AvailityAssessments/src/clientFiles" + num + ".csv";
 				FileWriter writer = new FileWriter(file);
 				CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("userId","firstName","lastName","version","insuranceCompany"));
 				Collections.sort(map.get(row.getValue().get(0).getInsuranceCompany()), compareByLastName);
